@@ -1,0 +1,69 @@
+ <!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Admin Dashboard</title>
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+  <header>
+    <nav>
+      <a href="/">Home</a>
+      <a href="/admin">Admin Dashboard</a>
+      <a href="/admin/logout">Logout</a>
+    </nav>
+    <h1>Admin Dashboard</h1>
+  </header>
+  <main>
+    <section>
+      <h2>Manage Schools</h2>
+      <form action="/admin/add-school" method="POST">
+        <input type="text" name="name" placeholder="School Name" required>
+        <input type="text" name="logo" placeholder="Logo Path (e.g., /images/logo.png)" required>
+        <textarea name="description" placeholder="Description" required></textarea>
+        <button type="submit" class="btn primary">Add School</button>
+      </form>
+      <ul class="list">
+        <% schools.forEach(school => { %>
+          <li>
+            <%= school.name %>
+            <form action="/admin/delete-school/<%= school._id %>" method="POST" style="display:inline;">
+              <button type="submit" class="btn danger">Delete</button>
+            </form>
+          </li>
+        <% }) %>
+      </ul>
+    </section>
+    <section>
+      <h2>Manage Staff</h2>
+      <form action="/admin/add-staff" method="POST">
+        <input type="text" name="name" placeholder="Staff Name" required>
+        <input type="text" name="role" placeholder="Role" required>
+        <input type="email" name="email" placeholder="Email" required>
+        <input type="tel" name="phone" placeholder="Phone" required>
+        <select name="school" required>
+          <% schools.forEach(school => { %>
+            <option value="<%= school._id %>"><%= school.name %></option>
+          <% }) %>
+        </select>
+        <button type="submit" class="btn primary">Add Staff</button>
+      </form>
+      <ul class="list">
+        <% if (staff && staff.length > 0) { %>
+          <% staff.forEach(member => { %>
+            <li>
+              <%= member.name %> (<%= member.role %>) - <%= member.school.name %>
+              <form action="/admin/delete-staff/<%= member._id %>" method="POST" style="display:inline;">
+                <button type="submit" class="btn danger">Delete</button>
+              </form>
+            </li>
+          <% }) %>
+        <% } else { %>
+          <li>No staff members available.</li>
+        <% } %>
+      </ul>
+    </section>
+  </main>
+</body>
+</html>

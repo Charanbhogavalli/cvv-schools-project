@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Add Staff - <%= school.name %></title>
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+  <main class="container">
+    <h2>Add Staff to <%= school.name %></h2>
+    <form class="form" method="POST" action="/admin/addStaff/<%= school._id %>">
+      <input name="name" placeholder="Full name" required>
+      <input name="email" type="email" placeholder="Email (optional)">
+      <input name="phone" placeholder="Phone (for tel link)">
+      <button class="btn" type="submit">Add</button>
+    </form>
+    <p><a href="/admin/dashboard">← Back</a></p>
+  </main>
+</body>
+</html>

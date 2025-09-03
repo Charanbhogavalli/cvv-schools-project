@@ -1,0 +1,37 @@
+ <!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title><%= school.name %></title>
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+  <header>
+    <nav>
+      <a href="/">Home</a>
+      <a href="/admin">Admin Dashboard</a>
+    </nav>
+    <h1><%= school.name %></h1>
+    <img src="<%= school.logo %>" alt="<%= school.name %> Logo" class="logo">
+  </header>
+  <main>
+    <p><%= school.description %></p>
+    <h2>Staff</h2>
+    <div class="staff-list">
+      <% if (staff.length > 0) { %>
+        <% staff.forEach(member => { %>
+          <div class="staff-card">
+            <h3><%= member.name %></h3>
+            <span class="badge"><%= member.role %></span>
+            <a href="tel:<%= member.phone %>" class="btn secondary">Call</a>
+            <a href="mailto:<%= member.email %>" class="btn secondary">Email</a>
+          </div>
+        <% }) %>
+      <% } else { %>
+        <p>No staff members yet.</p>
+      <% } %>
+    </div>
+  </main>
+</body>
+</html>

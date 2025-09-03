@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Add School</title>
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+  <main class="container">
+    <h2>Add School</h2>
+    <form class="form" method="POST" action="/admin/addSchool">
+      <input name="name" placeholder="School name" required>
+      <input name="logo" placeholder="Logo filename (e.g., computerscience.png)">
+      <input name="shortDesc" placeholder="Short description">
+      <textarea name="description" placeholder="Full description" rows="5"></textarea>
+      <button class="btn" type="submit">Save</button>
+    </form>
+    <p><a href="/admin/dashboard">← Back</a></p>
+  </main>
+</body>
+</html>
